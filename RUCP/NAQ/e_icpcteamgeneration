@@ -1,0 +1,12 @@
+def G():  # get int
+    return int(input())
+
+def GM():  # get multiple ints
+    return map(int, input().split())
+
+n = G() #number of competitors in local
+
+teams = []
+#this list is alr in order by ranking
+for i in range(n):
+    teams.append(tuple(GM())) #id, school

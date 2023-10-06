@@ -1,0 +1,12 @@
+import math
+
+
+def GM():  # get multiple ints
+    return map(int, input().split())
+
+n, r, w, h = GM() #n is number of plants, r is radius of circle, w is width of garden, h is height of garden
+protectedarea = math.pi * r * r #area of circle
+gardenarea = w * h #area of garden
+for i in range(n):
+    x, y, v = GM() #x and y are coordinates of plant, v is value of plant
+

@@ -1,0 +1,9 @@
+def GS():  # get string
+    return input().strip()  # duh
+
+def G():  # get int
+    return int(input())
+
+t = G()
+for i in range(t):
+    

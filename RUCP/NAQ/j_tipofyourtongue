@@ -1,0 +1,54 @@
+def GM():  # get multiple ints
+    return map(int, input().split())
+
+def GS():  # get string
+    return input().strip()  # duh
+
+def startsWith(w, p):
+    if len(w) < len(p):
+        return False
+    return w[0: len(p)] == p
+
+def endsWith(w, s):
+    if len(w) < len(s):
+        return False
+    return w[len(w) - len(s): len(w)] == s
+
+n, q = GM() #n is number of elements in dictionary, q is number of queries
+
+words = []
+reversed = []
+for i in range(n):
+    words.append(GS())
+    reversed.append(words[i][::-1])
+
+words.sort()
+reversed.sort()
+
+answer = []
+for i in range(q):
+    query = GS().split()
+    matches = set()
+    if query[0] == "AND":
+        entered = False
+        #Count the number of words in the dictionary that have p as a prefix and s as a suffix
+        for i in range(len(words)):
+            if startsWith(words[i], query[1]) and endsWith(words[i], query[2]):
+                matches.add(words[i])
+                entered = True
+            if entered and not startsWith(words[i], query[1]):
+                break
+    elif query[0] == "OR":
+        #Count the number of words in the dictionary that have p as a prefix or s as a suffix
+        for i in range(len(words)):
+            if startsWith(words[i], query[1]) or endsWith(words[i], query[2]):
+                matches.add(words[i])
+    else:
+        #Count the number of words in the dictionary that have p as a prefix or s as a suffix but not both
+        for i in range(len(words)):
+            if (startsWith(words[i], query[1]) and not endsWith(words[i], query[2])):
+                matches.add(words[i])
+                entered = True
+    answer.append(len(matches))
+for i in answer:
+    print(i)

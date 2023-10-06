@@ -1,0 +1,28 @@
+from collections import defaultdict
+
+def GS():  # get string
+    return input().strip()  # duh
+
+def findReplace(s, a, b):
+    return s.replace(a, b)
+
+og = GS()
+s1 = str(og)
+prev = ""
+count = defaultdict(int)
+while (s1 != prev):
+    prev = s1
+    count[prev] += 1
+    digits = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"] #list of digits
+    for i in range(10):
+        s1 = findReplace(s1, digits[i], str(i))
+s2 = str(og)
+while (s2 != prev):
+    prev = s2
+    count[prev] += 1
+    digits = ["nine", "eight", "seven", "six", "five", "four", "three", "two", "one", "zero"] #list of digits
+    for i in range(10):
+        s2 = findReplace(s2, digits[i], str(9-i))
+print(min(len(s1), len(s2)))
+print(len(count)-1)
+

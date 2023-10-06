@@ -1,0 +1,28 @@
+import math
+
+
+def GM():  # get multiple ints
+    return map(int, input().split())
+
+n, k, p = GM() #n is number of picograms per day that brandon must take, k is max amount of picograms in pills, p is max number of pills brandon accepts
+
+pillval = -1
+if n%p == 0: #if grams per day divides into brandons max pills
+    pillval = n // p #brandon's max pill value
+else: 
+    pillval = n // p + 1 #brandon's max pill value
+
+minpills = -1
+if n%k == 0: #if grams per day divides into brandoms max pills
+    minpills = n // k #min pill count
+else: #if n is not divisible by k
+    minpills = n // k + 1 #min pill count
+
+print(max(1, p-minpills)) #number of prescriptions brandon needs to take
+#print(pillval, k)
+answer = []
+for i in range(pillval, k + 1): #for each possible pill value
+    if (n%i == 0):
+        answer.append(i)
+for i in answer:
+    print(i)
